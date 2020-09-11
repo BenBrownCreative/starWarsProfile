@@ -1,4 +1,7 @@
-# starWarsProfile
-search by star wars character and view profile
+# Star Wars Profile
 
-use npm start to run locally
+Search by Star Wars Character. Results are displayed in a list. Each returned character can be selected to view thier about me "profile".
+
+
+## Running the Project 🚀
+> npm start
