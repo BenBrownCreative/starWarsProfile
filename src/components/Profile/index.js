@@ -5,7 +5,18 @@ import styled from 'styled-components';
 const Wrapper = styled.ul`
   padding: 0 2vw;
   min-width: 70%;
+  animation: swing-in-top-fwd 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
 `;
+
+const Note = styled.span`
+  opacity: 0.5;
+  font-size: 0.8rem;
+`;
+
+const H2 = styled.h2`
+  color: ${(p) => p.theme.color.secondary};
+`;
+
 const Item = styled.li`
   display: flex;
   margin-bottom: 8px;
@@ -25,36 +36,43 @@ const Profile = ({
   birthdate,
   hair,
   films,
+  species,
   starships,
   ...props
 }) => {
   return (
     <Wrapper>
       <Item>
-        <Label>name:</Label>
+        <Label></Label>
+        <H2>About Me</H2>
+      </Item>
+      <Item>
+        <Label>Name:</Label>
         {name}
       </Item>
       <Item>
-        <Label>height:</Label>
-        {height}cm
+        <Label>Height:</Label>
+        {height}
       </Item>
       <Item>
-        <Label>weight:</Label>
-        {weight}kg
+        <Label>Weight:</Label>
+        {weight}
       </Item>
       <Item>
-        <Label>birthdate:</Label>
+        <Label>Birthdate:</Label>
         {birthdate}
       </Item>
       <Item>
-        <Label>hair color:</Label>
+        <Label>Hair Color:</Label>
         {hair}
       </Item>
       <Item>
         <Label>Films:</Label>
         <ol>
           {films.map((film, i) => (
-            <li key={i}>{film.title} </li>
+            <li key={i}>
+              Episode {film.episode}: {film.title}
+            </li>
           ))}
         </ol>
       </Item>
@@ -63,7 +81,19 @@ const Profile = ({
           <Label>Starships:</Label>
           <ol>
             {starships.map((ship, i) => (
-              <li key={i}>{ship.name} </li>
+              <li key={i}>
+                {ship.name} <Note>{ship.class}</Note>
+              </li>
+            ))}
+          </ol>
+        </Item>
+      )}
+      {species.length > 0 && (
+        <Item>
+          <Label>Species:</Label>
+          <ol>
+            {species.map((species, i) => (
+              <li key={i}>{species.name} </li>
             ))}
           </ol>
         </Item>
@@ -80,6 +110,7 @@ Profile.propTypes = {
   hair: propTypes.string.isRequired,
   starships: propTypes.array.isRequired,
   films: propTypes.array.isRequired,
+  species: propTypes.array.isRequired,
 };
 
 export default Profile;

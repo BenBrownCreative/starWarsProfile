@@ -7,7 +7,7 @@ import GlobalStyle from './components/theme/global';
 import theme from './components/theme';
 import fonts from './components/fonts';
 
-// The premise of this challenge is to create a “profile page” for various star wars characters in the Star Wars universe.
+// Create a “profile page” for various star wars characters in the Star Wars universe.
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>

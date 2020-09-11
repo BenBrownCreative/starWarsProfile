@@ -1,11 +1,11 @@
 export const color = {
   white: '#fff',
   grey: '#c5c6c7',
-  darkGrey: '#8a8989',
-  secondary: '#86c740',
+  secondary: '#8BD43D',
   primary: '#1f2833',
   primaryMuted: '#5e6977',
   secondaryMuted: '#c1e09f',
+  secondaryHover: '#86c740',
   background: '#d7f4d8',
 };
 

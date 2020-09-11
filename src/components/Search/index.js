@@ -25,7 +25,7 @@ const Yoda = styled.img`
 `;
 
 const Form = styled.form`
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   max-width: 500px;
   text-align: left;
   align-self: flex-end;
@@ -44,7 +44,6 @@ const Name = styled.li`
   margin: 0 0 1rem;
   border-radius: 3px;
   cursor: pointer;
-
   background: ${(p) =>
     p.selected
       ? `${p.theme.color.secondary}`
@@ -70,18 +69,19 @@ const Search = () => {
     setErrorMessage();
     setsearchResults();
 
-    search(query).then((res) => {
-      if (res.name === 'Error') {
-        setErrorMessage(res.message);
+    search(query).then((results) => {
+      if (results.name === 'Error') {
+        setErrorMessage(results.message);
       } else {
+        console.log('final:', results);
         setSelectedProfile(0);
-        setsearchResults(res);
+        setsearchResults(results);
       }
     });
   };
 
   const handleSelected = (selected) => {
-    setSelectedProfile(selected.currentTarget.id);
+    setSelectedProfile(parseInt(selected.currentTarget.id));
   };
 
   return (
@@ -90,8 +90,12 @@ const Search = () => {
         <Yoda src={require('./yoda.png')} />
         <Form onSubmit={handleSearch}>
           <Label>
-            Star Wars Character
-            <TextInput type='search' name='characterSearch' />
+            Search for Star Wars Characters by name you can
+            <TextInput
+              type='search'
+              name='characterSearch'
+              placeholder='name'
+            />
           </Label>
           <PrimaryButton type='submit'>Search</PrimaryButton>
         </Form>
@@ -105,7 +109,7 @@ const Search = () => {
                 key={i}
                 id={i}
                 onClick={handleSelected}
-                selected={i == selectedProfile}
+                selected={i === selectedProfile}
               >
                 {person.name}{' '}
               </Name>
@@ -113,40 +117,12 @@ const Search = () => {
           </Names>
         )}
 
-        {searchResults && (
-          <Profile
-            key={searchResults[selectedProfile].name}
-            name={searchResults[selectedProfile].name}
-            height={searchResults[selectedProfile].height}
-            weight={searchResults[selectedProfile].mass}
-            birthdate={searchResults[selectedProfile].birth_year}
-            hair={searchResults[selectedProfile].hair_color}
-            films={searchResults[selectedProfile].films}
-            starships={searchResults[selectedProfile].starships}
-            //films={searchResults[0].films}
-          />
-        )}
+        {searchResults && <Profile {...searchResults[selectedProfile]} />}
 
         {errorMessage && <div>{errorMessage}</div>}
       </ResultsContainer>
     </Wrapper>
   );
 };
-
-// {searchResults &&
-//   searchResults.map((person) => (
-//     <Profile
-//       key={person.name}
-//       name={person.name}
-//       height={person.height}
-//       weight={person.mass}
-//       birthdate={person.birth_year}
-//       hair={person.hair_color}
-//       films={person.films}
-//       starships={person.starships}
-//       selected={person.selected}
-//       //films={searchResults[0].films}
-//     />
-//   ))}
 
 export default Search;

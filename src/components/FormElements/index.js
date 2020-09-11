@@ -17,6 +17,9 @@ export const PrimaryButton = styled.button`
   ${commonStyles};
   cursor: pointer;
   background: ${(p) => p.theme.color.secondary};
+  &:hover {
+    background: ${(p) => p.theme.color.secondaryHover};
+  }
 `;
 
 export const TextInput = styled.input`
