@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { PrimaryButton, Label, TextInput } from '../FormElements';
-import { search } from '../utils/Queries';
+import search from '../Utils/Queries';
 import Profile from '../Profile';
 
 const Wrapper = styled.div`

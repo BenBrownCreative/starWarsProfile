@@ -3,7 +3,7 @@ import formatCharacter from '../FormatResults';
 
 const BASE_URL = 'https://swapi.dev/api/';
 
-export async function search(query) {
+async function search(query) {
   const url = `${BASE_URL}people/?search=${query}`;
   try {
     let search = await getRequest(url);
@@ -22,3 +22,5 @@ export async function search(query) {
     return err;
   }
 }
+
+export default search;
