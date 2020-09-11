@@ -9,12 +9,13 @@ const commonStyles = css`
   border-radius: 3px;
   margin: 10px 0;
   width: 100%;
-  border: none;
-  color: #666;
+  border: 1px solid ${(p) => p.theme.color.grey};
+  color: ${(p) => p.theme.color.darkBlue};
 `;
 
 export const PrimaryButton = styled.button`
   ${commonStyles};
+  cursor: pointer;
   background: ${(p) => p.theme.color.secondary};
 `;
 
