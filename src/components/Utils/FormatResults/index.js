@@ -7,8 +7,12 @@ import getRequest from '../Requests';
 const characterFormatted = (char) => {
   return {
     name: char.name,
-    height: `${Math.round(char.height * 0.393701)}in`,
-    weight: `${Math.round(char.mass * 2.20462)}lbs`,
+    height: isNaN(char.height)
+      ? char.height
+      : `${Math.round(char.height * 0.393701)}in`,
+    weight: isNaN(char.mass)
+      ? char.mass
+      : `${Math.round(char.mass * 2.20462)}lbs`,
     hair: char.hair_color,
     birthdate: char.birth_year,
     species: char.species.map((species) => {
